@@ -3,337 +3,659 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thomás Soares Pessôa</title>
+<title>Thomás Soares Pessôa · Desenvolvedor Front-End</title>
+<meta name="description" content="Currículo e portfólio de Thomás Soares Pessôa, desenvolvedor front-end (React, TypeScript, Supabase). Veja os projetos publicados.">
+<meta property="og:title" content="Thomás Soares Pessôa · Desenvolvedor Front-End">
+<meta property="og:description" content="Currículo e portfólio: Casa das Alianças, Alerta Comunidade, Entrelinhas, EcoCash e Quanto Custa?">
+<meta property="og:image" content="assets/projetos/aliancas.webp">
+<meta name="theme-color" content="#070b17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --bg: #070b17;
+  --bg-2: #0b1222;
+  --surface: #0f172a;
+  --surface-2: #131c33;
+  --line: #1f2a44;
+  --text: #e6ebf5;
+  --muted: #9aa6c0;
+  --accent: #38bdf8;
+  --accent-2: #818cf8;
+  --radius: 18px;
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
-  background: radial-gradient(circle at top, #0b1d3a, #020617 70%);
-  color: #e5e7eb;
-  line-height: 1.6;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-section {
-  padding: 60px 20px;
-  max-width: 1100px;
-  margin: auto;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(900px 500px at 15% -10%, rgba(56,189,248,.16), transparent 60%),
+    radial-gradient(800px 500px at 100% 10%, rgba(129,140,248,.14), transparent 60%),
+    var(--bg);
 }
 
-h3 {
-  text-align: center;
-  font-size: 1.9rem;
-  margin-bottom: 30px;
+a { color: inherit; }
+img, video { display: block; max-width: 100%; }
+
+h1, h2, h3, h4 { font-family: 'Sora', 'Inter', sans-serif; line-height: 1.2; letter-spacing: -0.02em; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+section { padding: 96px 0; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
 }
 
-/* HERO */
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  text-align: center;
-  padding-top: 40px;
+.section-title { font-size: clamp(1.8rem, 3.4vw, 2.5rem); margin-bottom: 14px; }
+.section-sub { color: var(--muted); max-width: 640px; margin-bottom: 48px; }
+
+.grad {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.hero img {
-  width: 210px;
-  height: 210px;
-  border-radius: 50%;
-  border: 4px solid #38bdf8;
-  object-fit: cover;
-  box-shadow: 0 0 30px rgba(56, 189, 248, 0.35);
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(7,11,23,.72);
+  border-bottom: 1px solid rgba(31,42,68,.6);
 }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+.brand { font-family: 'Sora', sans-serif; font-weight: 700; text-decoration: none; font-size: 1.05rem; }
+.brand span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--muted); font-size: .93rem; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--text); }
 
-.hero-content h1 {
-  font-size: 2.4rem;
-}
-
-.hero-content h2 {
-  color: #38bdf8;
-  font-weight: normal;
-  margin: 10px 0;
-  font-size: 1.15rem;
-}
-
-.hero-content p {
-  max-width: 600px;
-  color: #cbd5f5;
-}
-
-/* CONTATO */
-.contact {
-  margin-top: 14px;
-  font-size: 0.95rem;
-}
-
-.contact a {
-  color: #38bdf8;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.contact span {
-  display: block;
-  margin-top: 6px;
-}
-
-/* SOBRE (SUBIDO PARA CIMA) */
-.sobre {
-  padding-top: 8px; /* <<< AQUI FOI SUBIDO */
-}
-
-.sobre p {
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-  color: #cbd5f5;
-}
-
-/* EXPERIÊNCIA */
-.cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-.card {
-  background: #020617;
-  padding: 25px;
-  border-radius: 12px;
-  border-left: 4px solid #38bdf8;
-  transition: transform 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h4 {
-  color: #38bdf8;
-  margin-bottom: 10px;
-}
-
-/* SKILLS */
-.skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 20px;
-  justify-items: center;
-}
-
-.skill-card {
-  background: #020617;
-  width: 170px;
-  padding: 18px;
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
+/* BOTÕES */
+.btn {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid #1e293b;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.skill-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
-}
-
-.skill-card img {
-  width: 42px;
-  height: 42px;
-}
-
-.skill-card span {
-  font-size: 0.95rem;
-  font-weight: bold;
-}
-
-/* BOTÕES CERTIFICADOS */
-.btn-skill {
-  font-size: 0.75rem;
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #38bdf8;
-  color: #38bdf8;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: .95rem;
   text-decoration: none;
-  transition: 0.3s;
-  width: 100%;
-  text-align: center;
+  transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+  border: 1px solid transparent;
+  cursor: pointer;
 }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #06101f; box-shadow: 0 10px 30px -10px rgba(56,189,248,.6); }
+.btn-ghost { border-color: var(--line); color: var(--text); background: rgba(255,255,255,.02); }
+.btn-ghost:hover { border-color: var(--accent); }
+.btn-sm { padding: 9px 16px; font-size: .86rem; }
 
-.btn-skill:hover {
-  background: #38bdf8;
-  color: #020617;
-}
+/* HERO */
+.hero { padding: 88px 0 72px; }
+.hero .wrap:not(.stats-wrap) { display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: center; }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  background: #020617;
-  color: #94a3b8;
-  font-size: 0.9rem;
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.25);
+  color: #bae6fd; font-size: .85rem; font-weight: 500; margin-bottom: 22px;
 }
+.badge i { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.18); }
+
+.hero h1 { font-size: clamp(2.4rem, 5.6vw, 4rem); font-weight: 800; margin-bottom: 18px; }
+.hero .role { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--text); font-weight: 500; margin-bottom: 14px; }
+.hero p.lead { color: var(--muted); max-width: 560px; margin-bottom: 30px; font-size: 1.05rem; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 34px; }
+
+.hero-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--muted); font-size: .92rem; }
+.hero-meta a { text-decoration: none; transition: color .2s; }
+.hero-meta a:hover { color: var(--accent); }
+
+.photo-wrap { position: relative; justify-self: center; }
+.photo-wrap::before {
+  content: ""; position: absolute; inset: -14px; border-radius: 32px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  opacity: .55; filter: blur(30px); z-index: -1;
+}
+.photo-wrap img {
+  width: 320px; height: 380px; object-fit: cover;
+  border-radius: 28px; border: 1px solid rgba(255,255,255,.12);
+}
+.photo-card {
+  position: absolute; left: -36px; bottom: 28px;
+  background: rgba(15,23,42,.9); border: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+  padding: 12px 16px; border-radius: 14px; font-size: .85rem;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,.7);
+}
+.photo-card strong { display: block; font-family: 'Sora', sans-serif; font-size: 1.35rem; color: var(--accent); line-height: 1.1; }
+.photo-card span { color: var(--muted); }
+
+/* STATS */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 64px; }
+.stat {
+  background: rgba(15,23,42,.6); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 20px 22px;
+}
+.stat strong { display: block; font-family: 'Sora', sans-serif; font-size: 1.7rem; }
+.stat span { color: var(--muted); font-size: .9rem; }
+
+/* PROJETOS */
+.project {
+  display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: center;
+  margin-bottom: 96px;
+}
+.project:nth-of-type(even) .browser { order: 2; }
+
+.browser {
+  border-radius: 14px; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--line);
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.02);
+  transition: transform .4s ease, box-shadow .4s;
+}
+.browser:hover { transform: translateY(-6px); box-shadow: 0 50px 90px -30px rgba(56,189,248,.25); }
+.browser-bar {
+  display: flex; align-items: center; gap: 7px;
+  height: 36px; padding: 0 14px; background: var(--surface-2); border-bottom: 1px solid var(--line);
+}
+.browser-bar i { width: 10px; height: 10px; border-radius: 50%; background: #334155; }
+.browser-bar i:nth-child(1) { background: #f87171; }
+.browser-bar i:nth-child(2) { background: #fbbf24; }
+.browser-bar i:nth-child(3) { background: #34d399; }
+.browser-bar span {
+  margin-left: 10px; flex: 1; max-width: 340px;
+  background: var(--bg-2); border-radius: 6px; padding: 3px 12px;
+  font-size: .74rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.browser video, .browser img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: var(--bg-2); }
+
+.project-tag { color: var(--accent); font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.project h3 { font-size: 1.8rem; margin: 8px 0 14px; }
+.project p { color: var(--muted); margin-bottom: 16px; }
+.project ul { list-style: none; margin-bottom: 22px; display: grid; gap: 8px; }
+.project li { position: relative; padding-left: 22px; color: #cbd5e1; font-size: .95rem; }
+.project li::before { content: ""; position: absolute; left: 0; top: .62em; width: 10px; height: 2px; background: var(--accent); border-radius: 2px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.tags span {
+  font-size: .78rem; font-weight: 500; padding: 5px 11px; border-radius: 999px;
+  background: rgba(129,140,248,.1); border: 1px solid rgba(129,140,248,.25); color: #c7d2fe;
+}
+.project-links { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.more-title { font-size: 1.3rem; margin-bottom: 24px; color: var(--muted); font-weight: 600; }
+.mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.mini {
+  background: rgba(15,23,42,.6); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column; transition: border-color .3s, transform .3s;
+}
+.mini:hover { border-color: rgba(56,189,248,.45); transform: translateY(-4px); }
+.mini .browser { border: 0; border-radius: 0; box-shadow: none; }
+.mini .browser:hover { transform: none; }
+.mini-body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+.mini h3 { font-size: 1.3rem; margin: 6px 0 8px; }
+.mini p { color: var(--muted); font-size: .95rem; margin-bottom: 16px; flex: 1; }
+.mini .tags { margin-bottom: 18px; }
+
+/* EXPERIÊNCIA */
+.timeline { position: relative; display: grid; gap: 18px; padding-left: 28px; }
+.timeline::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--accent), transparent); }
+.t-item {
+  position: relative; background: rgba(15,23,42,.6); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px 26px;
+}
+.t-item::before {
+  content: ""; position: absolute; left: -28px; top: 28px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg); border: 3px solid var(--accent);
+}
+.t-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; margin-bottom: 6px; }
+.t-item h4 { font-size: 1.08rem; }
+.t-item .when { color: var(--accent); font-size: .85rem; font-weight: 600; }
+.t-item .org { color: #cbd5e1; font-size: .92rem; margin-bottom: 6px; }
+.t-item p { color: var(--muted); font-size: .95rem; }
+
+.two-col { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+.edu-card {
+  background: linear-gradient(160deg, rgba(56,189,248,.1), rgba(129,140,248,.06));
+  border: 1px solid rgba(56,189,248,.25); border-radius: var(--radius); padding: 28px;
+}
+.edu-card h4 { font-size: 1.2rem; margin-bottom: 6px; }
+.edu-card .org { color: #cbd5e1; margin-bottom: 14px; }
+.progress { height: 8px; background: rgba(255,255,255,.06); border-radius: 99px; overflow: hidden; margin: 8px 0 6px; }
+.progress div { height: 100%; width: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.edu-card small { color: var(--muted); }
+.edu-card p { color: var(--muted); font-size: .95rem; margin-top: 16px; }
+
+/* SOBRE */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.about p { color: var(--muted); margin-bottom: 16px; }
+.traits { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-self: center; }
+.trait { background: rgba(15,23,42,.6); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+.trait strong { display: block; font-size: .98rem; margin-bottom: 2px; }
+.trait span { color: var(--muted); font-size: .88rem; }
+
+/* HABILIDADES */
+.stack { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
+.stack div {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; border-radius: 12px;
+  background: rgba(15,23,42,.6); border: 1px solid var(--line); font-weight: 500; font-size: .93rem;
+  transition: border-color .2s, transform .2s;
+}
+.stack div:hover { border-color: var(--accent); transform: translateY(-2px); }
+.stack img { width: 22px; height: 22px; }
+
+.certs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.cert {
+  background: rgba(15,23,42,.6); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 22px; display: flex; flex-direction: column; gap: 10px;
+}
+.cert-head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.cert-head img { width: 34px; height: 34px; }
+.cert-head strong { font-family: 'Sora', sans-serif; }
+.cert a {
+  font-size: .84rem; text-decoration: none; color: #cbd5e1;
+  padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center; transition: .2s;
+}
+.cert a::after { content: "↗"; color: var(--accent); }
+.cert a:hover { border-color: var(--accent); color: var(--text); background: rgba(56,189,248,.06); }
+.certs-note { color: var(--muted); font-size: .85rem; margin-top: 16px; }
+
+/* CONTATO */
+.cta {
+  text-align: center; padding: 64px 32px; border-radius: 28px;
+  background: linear-gradient(135deg, rgba(56,189,248,.14), rgba(129,140,248,.12));
+  border: 1px solid rgba(56,189,248,.25);
+}
+.cta h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); margin-bottom: 12px; }
+.cta p { color: #cbd5e1; max-width: 560px; margin: 0 auto 28px; }
+.cta .hero-cta { justify-content: center; margin-bottom: 0; }
+
+footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size: .88rem; }
 
 /* ANIMAÇÃO */
-.fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.6s;
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.show { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn, .browser, .mini, .stack div { transition: none; }
 }
 
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
+/* RESPONSIVO */
+@media (max-width: 960px) {
+  .hero .wrap:not(.stats-wrap), .project, .two-col, .about { grid-template-columns: 1fr; }
+  .project:nth-of-type(even) .browser { order: 0; }
+  .photo-wrap { order: -1; }
+  .photo-wrap img { width: 240px; height: 280px; }
+  .photo-card { left: -20px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .certs { grid-template-columns: repeat(2, 1fr); }
+  .project { gap: 28px; margin-bottom: 72px; }
 }
-
-@media (min-width: 768px) {
-  .hero {
-    flex-direction: row;
-    text-align: left;
-    justify-content: center;
-  }
-
-  .hero-content {
-    max-width: 600px;
-  }
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  section { padding: 72px 0; }
+  .hero { padding-top: 48px; }
+  .mini-grid, .traits { grid-template-columns: 1fr; }
+  .certs { grid-template-columns: 1fr; }
+  .stats { margin-top: 44px; }
 }
 </style>
 </head>
 
 <body>
 
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Thomás<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="#contato">Fale comigo</a>
+  </div>
+</nav>
+
 <!-- HERO -->
-<section class="hero fade">
-  <img src="minha-foto.jpg" alt="Foto de Thomás Soares Pessôa">
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="badge"><i></i> Disponível para minha primeira oportunidade</div>
+      <h1>Thomás Soares <span class="grad">Pessôa</span></h1>
+      <p class="role">Desenvolvedor Front-End · React, TypeScript e Supabase</p>
+      <p class="lead">
+        Crio sites e aplicações web completos: da interface caprichada ao banco de dados, publicados e funcionando.
+        Comunicativo, organizado e apaixonado por tecnologia, sempre buscando a forma mais eficiente de entregar qualidade.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#projetos">Ver meus projetos ↓</a>
+        <a class="btn btn-ghost" href="https://wa.me/5555999096533" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+      <div class="hero-meta">
+        <span>📍 Restinga Sêca, RS</span>
+        <a href="mailto:thomassoarespessoa.rs@hotmail.com">✉️ thomassoarespessoa.rs@hotmail.com</a>
+        <a href="https://github.com/thomaspessoa" target="_blank" rel="noopener">💻 github.com/thomaspessoa</a>
+      </div>
+    </div>
 
-  <div class="hero-content">
-    <h1>Thomás Soares Pessôa</h1>
-    <h2>Cursando Sistemas de Informação 8/8 · 📍 Antonio Meneghetti Faculdade</h2>
+    <div class="photo-wrap reveal">
+      <img src="minha-foto.jpg" alt="Foto de Thomás Soares Pessôa">
+      <div class="photo-card">
+        <strong>5 projetos</strong>
+        <span>publicados e no ar</span>
+      </div>
+    </div>
+  </div>
 
-    <p>
-      Sou comunicativo, dedicado e organizado, com facilidade de aprendizado e paixão por tecnologia.
-      Busco sempre a forma mais eficiente de entregar qualidade.
-    </p>
+  <div class="wrap stats-wrap">
+    <div class="stats reveal">
+      <div class="stat"><strong>8º</strong><span>semestre de Sistemas de Informação</span></div>
+      <div class="stat"><strong>5</strong><span>sites publicados na Vercel</span></div>
+      <div class="stat"><strong>10</strong><span>certificados Alura</span></div>
+      <div class="stat"><strong>2023</strong><span>programando como freelancer</span></div>
+    </div>
+  </div>
+</header>
 
-    <div class="contact">
-      <span>📧 <a href="mailto:thomassoarespessoa.rs@hotmail.com">thomassoarespessoa.rs@hotmail.com</a></span>
-      <span>📱 <a href="https://wa.me/55999096533" target="_blank">+55 9 9909-6533</a></span>
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="wrap">
+    <span class="eyebrow">Portfólio</span>
+    <h2 class="section-title reveal">Projetos em destaque</h2>
+    <p class="section-sub reveal">Sites reais, publicados e funcionando. Os vídeos mostram cada um em uso, e você pode abrir todos para testar.</p>
+
+    <!-- CASA DAS ALIANÇAS -->
+    <article class="project reveal">
+      <div class="browser">
+        <div class="browser-bar"><i></i><i></i><i></i><span>casa-das-aliancas-zeta.vercel.app</span></div>
+        <video class="demo" muted loop playsinline preload="none" poster="assets/projetos/aliancas.webp" aria-label="Demonstração do site Casa das Alianças">
+          <source src="assets/projetos/aliancas.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div>
+        <span class="project-tag">E-commerce · Joalheria</span>
+        <h3>Casa das Alianças</h3>
+        <p>Site completo para uma rede de joalherias, com vitrine para clientes e painel de gestão para a equipe.</p>
+        <ul>
+          <li>Aliança em 3D: o cliente escolhe metal, largura, acabamento e pedras e gira a peça</li>
+          <li>Gravação personalizada com prévia, mapa das lojas e agendamento de visita</li>
+          <li>Painel com login por cargo, cadastro de produtos com foto e gráficos de acesso</li>
+        </ul>
+        <div class="tags"><span>React 19</span><span>TypeScript</span><span>Three.js</span><span>Framer Motion</span><span>Leaflet</span><span>Supabase</span></div>
+        <div class="project-links">
+          <a class="btn btn-primary btn-sm" href="https://casa-das-aliancas-zeta.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ALERTA COMUNIDADE -->
+    <article class="project reveal">
+      <div class="browser">
+        <div class="browser-bar"><i></i><i></i><i></i><span>alerta-comunidade.vercel.app</span></div>
+        <video class="demo" muted loop playsinline preload="none" poster="assets/projetos/alerta.webp" aria-label="Demonstração do app Alerta Comunidade">
+          <source src="assets/projetos/alerta.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div>
+        <span class="project-tag">App web · Utilidade pública</span>
+        <h3>Alerta Comunidade</h3>
+        <p>Aplicativo onde os moradores avisam o que acontece na cidade (trânsito, buracos, bichos perdidos, temporais) e os próprios vizinhos confirmam.</p>
+        <ul>
+          <li>Mapa ao vivo das ocorrências, com radar de chuva e previsão para as próximas horas</li>
+          <li>Notificações no celular (Web Push) e instalação como app (PWA)</li>
+          <li>Relatórios com gráficos exportados em PDF e Excel para a administração</li>
+        </ul>
+        <div class="tags"><span>React</span><span>TypeScript</span><span>Zustand</span><span>Leaflet</span><span>Supabase</span><span>PWA</span></div>
+        <div class="project-links">
+          <a class="btn btn-primary btn-sm" href="https://alerta-comunidade.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ENTRELINHAS -->
+    <article class="project reveal">
+      <div class="browser">
+        <div class="browser-bar"><i></i><i></i><i></i><span>entrelinhas-ashen-chi.vercel.app</span></div>
+        <video class="demo" muted loop playsinline preload="none" poster="assets/projetos/entrelinhas.webp" aria-label="Demonstração do site Entrelinhas">
+          <source src="assets/projetos/entrelinhas.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div>
+        <span class="project-tag">Rede social · Livros</span>
+        <h3>Entrelinhas</h3>
+        <p>Comunidade de leitores para descobrir o próximo livro pelo clima: "quero chorar", "quero rir", "quero pensar".</p>
+        <ul>
+          <li>Livros avaliados por leitores reais, com busca por título, autor e gênero</li>
+          <li>Mural de pedidos de indicação, estante pessoal e perfil de leitor</li>
+          <li>Cadastro e login com recuperação de senha, coberto por 19 testes automáticos</li>
+        </ul>
+        <div class="tags"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Vitest</span><span>Testing Library</span></div>
+        <div class="project-links">
+          <a class="btn btn-primary btn-sm" href="https://entrelinhas-ashen-chi.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <h3 class="more-title reveal">Outros projetos</h3>
+    <div class="mini-grid">
+      <article class="mini reveal">
+        <div class="browser">
+          <div class="browser-bar"><i></i><i></i><i></i><span>ecocash-chi.vercel.app</span></div>
+          <video class="demo" muted loop playsinline preload="none" poster="assets/projetos/ecocash.webp" aria-label="Demonstração do EcoCash">
+            <source src="assets/projetos/ecocash.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="mini-body">
+          <span class="project-tag">Sustentabilidade</span>
+          <h3>EcoCash</h3>
+          <p>Plataforma municipal de recompensas por reciclagem: o morador entrega lixo orgânico, ganha pontos e troca por desconto no comércio local. Tem app do morador, painel da prefeitura e página pública de impacto.</p>
+          <div class="tags"><span>React 19</span><span>TypeScript</span><span>Motion</span><span>Recharts</span></div>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://ecocash-chi.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a></div>
+        </div>
+      </article>
+
+      <article class="mini reveal">
+        <div class="browser">
+          <div class="browser-bar"><i></i><i></i><i></i><span>quanto-custa-zeta.vercel.app</span></div>
+          <video class="demo" muted loop playsinline preload="none" poster="assets/projetos/quantocusta.webp" aria-label="Demonstração do Quanto Custa?">
+            <source src="assets/projetos/quantocusta.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="mini-body">
+          <span class="project-tag">Finanças pessoais</span>
+          <h3>Quanto Custa?</h3>
+          <p>Calculadoras simples para descobrir o custo real de morar sozinho, ter carro, moto ou cachorro, e quanto sobra da renda no fim do mês.</p>
+          <div class="tags"><span>React</span><span>Vite</span><span>JavaScript</span></div>
+          <div class="project-links">
+            <a class="btn btn-ghost btn-sm" href="https://quanto-custa-zeta.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a>
+            <a class="btn btn-ghost btn-sm" href="https://github.com/thomaspessoa/quanto-custa" target="_blank" rel="noopener">Código</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA + FORMAÇÃO -->
+<section id="experiencia">
+  <div class="wrap">
+    <span class="eyebrow">Trajetória</span>
+    <h2 class="section-title reveal">Experiência e formação</h2>
+    <p class="section-sub reveal">Experiência prática com tecnologia e com gente, do atendimento ao código.</p>
+
+    <div class="two-col">
+      <div class="timeline">
+        <div class="t-item reveal">
+          <div class="t-head"><h4>Programador Front-End</h4><span class="when">2023</span></div>
+          <div class="org">Freelancer</div>
+          <p>Desenvolvimento de sites e aplicações web responsivas, da interface à publicação, para clientes e projetos próprios.</p>
+        </div>
+        <div class="t-item reveal">
+          <div class="t-head"><h4>Auxiliar Técnico</h4><span class="when">2021</span></div>
+          <div class="org">Valere Segurança e Tecnologia</div>
+          <p>Instalação de Wi-Fi, câmeras de segurança, redes e fibra óptica.</p>
+        </div>
+        <div class="t-item reveal">
+          <div class="t-head"><h4>Outras experiências</h4></div>
+          <p>Atendimento ao público, cozinheiro no Exército Brasileiro e Jovem Aprendiz.</p>
+        </div>
+      </div>
+
+      <div class="edu-card reveal">
+        <span class="eyebrow">Formação</span>
+        <h4>Sistemas de Informação</h4>
+        <div class="org">Antonio Meneghetti Faculdade</div>
+        <div class="progress"><div></div></div>
+        <small>8º de 8 semestres · reta final</small>
+        <p>Além da faculdade, faço cursos na Alura em HTML, CSS, JavaScript, Python e React Native.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SOBRE -->
-<section class="sobre fade">
-  <h3>Sobre mim</h3>
-  <p>
-    Tenho 25 anos e curso Sistemas de Informação na Antonio Meneghetti Faculdade.
-    Sou uma pessoa comprometida com o aprendizado contínuo e busco minha inserção
-    no mercado de tecnologia para me desenvolver profissionalmente e construir
-    uma carreira sólida.
-  </p>
-  <br>
-
-
-  <p>
-    Sou dedicado, organizado, responsável e pontual, valorizo o trabalho em equipe
-    e acredito que o crescimento profissional vem da prática, da colaboração e da
-    vontade constante de evoluir.
-  </p>
-
-  <p>
-    Meu objetivo é me aperfeiçoar constantemente, me tornar um profissional
-    qualificado e contribuir de forma positiva com os resultados da equipe e da empresa.
-  </p>
-</section>
-
-
-  <p style="margin-top:14px; color:#38bdf8; font-weight:bold; text-align:center;">
-    Busco minha primeira oportunidade na área para aprender, crescer e agregar valor ao time.
-  </p>
-</section>
-
-<!-- EXPERIÊNCIA -->
-<section class="fade">
-  <h3>Experiência Profissional</h3>
-  <div class="cards">
-    <div class="card">
-      <h4>Programador Front-End – Freelancer | 2023</h4>
-      <p>Desenvolvimento de interfaces responsivas e aplicações web.</p>
+<section id="sobre">
+  <div class="wrap about">
+    <div class="reveal">
+      <span class="eyebrow">Sobre mim</span>
+      <h2 class="section-title">Aprender, praticar e entregar</h2>
+      <p>
+        Tenho 25 anos e curso Sistemas de Informação na Antonio Meneghetti Faculdade. Sou comprometido com o aprendizado
+        contínuo e busco minha entrada no mercado de tecnologia para me desenvolver e construir uma carreira sólida.
+      </p>
+      <p>
+        Acredito que o crescimento profissional vem da prática, da colaboração e da vontade constante de evoluir.
+        Meu objetivo é me tornar um profissional cada vez mais qualificado e contribuir de forma positiva com os resultados da equipe e da empresa.
+      </p>
     </div>
-
-    <div class="card">
-      <h4>Auxiliar Técnico – Valere Segurança e Tecnologia | 2021</h4>
-      <p>Instalação de Wi-Fi, câmeras de segurança, redes e fibra óptica.</p>
-    </div>
-
-    <div class="card">
-      <h4>Outras Experiências</h4>
-      <p>Atendimento ao público, cozinheiro no Exército Brasileiro e Jovem Aprendiz.</p>
+    <div class="traits reveal">
+      <div class="trait"><strong>🤝 Trabalho em equipe</strong><span>Comunicativo e colaborativo</span></div>
+      <div class="trait"><strong>🗂️ Organizado</strong><span>Dedicado, responsável e pontual</span></div>
+      <div class="trait"><strong>⚡ Aprende rápido</strong><span>Facilidade com novas ferramentas</span></div>
+      <div class="trait"><strong>🎯 Foco em qualidade</strong><span>A forma mais eficiente de entregar bem</span></div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="habilidades" class="fade">
-  <h3>Habilidades & Certificados</h3>
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <div class="wrap">
+    <span class="eyebrow">Habilidades</span>
+    <h2 class="section-title reveal">Tecnologias que uso</h2>
+    <p class="section-sub reveal">As ferramentas dos projetos acima, mais os cursos certificados.</p>
 
-  <div class="skills">
-
-    <div class="skill-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
-      <span>HTML & CSS</span>
-
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/html-css-ambiente-arquivos-tags/certificate" target="_blank">Estrutura e Tags</a>
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/html-css-classes-posicionamento-flexbox/certificate" target="_blank">Flexbox</a>
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/html-css-praticando-html-css/certificate" target="_blank">Prática</a>
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/html-css-responsividade-publicacao-projetos/certificate" target="_blank">Responsividade</a>
+    <div class="stack reveal">
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="">HTML</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="">CSS</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="">Supabase</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="">SQL</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="">Vite</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" alt="" style="filter:invert(1)">Three.js</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">Git e GitHub</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" alt="" style="filter:invert(1)">Vercel</div>
+      <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</div>
     </div>
 
-    <div class="skill-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
-      <span>JavaScript</span>
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/javascript-introducao/certificate" target="_blank">Fundamentos</a>
+    <div class="certs reveal">
+      <div class="cert">
+        <div class="cert-head"><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt=""><strong>HTML & CSS</strong></div>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/html-css-ambiente-arquivos-tags/certificate" target="_blank" rel="noopener">Estrutura e tags</a>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/html-css-classes-posicionamento-flexbox/certificate" target="_blank" rel="noopener">Flexbox</a>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/html-css-praticando-html-css/certificate" target="_blank" rel="noopener">Prática</a>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/html-css-responsividade-publicacao-projetos/certificate" target="_blank" rel="noopener">Responsividade</a>
+      </div>
+      <div class="cert">
+        <div class="cert-head"><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt=""><strong>JavaScript</strong></div>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/javascript-introducao/certificate" target="_blank" rel="noopener">Fundamentos</a>
+      </div>
+      <div class="cert">
+        <div class="cert-head"><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt=""><strong>Python</strong></div>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/python-3-avancando-na-linguagem/certificate" target="_blank" rel="noopener">Avançado</a>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/python-3-intro-orientacao-objetos/certificate" target="_blank" rel="noopener">Orientação a objetos</a>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/python-3-trabalhando-com-io/certificate" target="_blank" rel="noopener">Entrada e saída (I/O)</a>
+      </div>
+      <div class="cert">
+        <div class="cert-head"><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt=""><strong>React Native</strong></div>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/react-native-typescript-app-consultas-medicas/certificate" target="_blank" rel="noopener">App mobile</a>
+        <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/react-native-context-api-aplicacoes/certificate" target="_blank" rel="noopener">Context API</a>
+      </div>
     </div>
+    <p class="certs-note">Clique em cada curso para ver o certificado na Alura.</p>
+  </div>
+</section>
 
-    <div class="skill-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
-      <span>Python</span>
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/python-3-avancando-na-linguagem/certificate" target="_blank">Avançado</a>
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/python-3-intro-orientacao-objetos/certificate" target="_blank">POO</a>
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/python-3-trabalhando-com-io/certificate" target="_blank">I/O</a>
+<!-- CONTATO -->
+<section id="contato">
+  <div class="wrap">
+    <div class="cta reveal">
+      <span class="eyebrow">Contato</span>
+      <h2>Vamos conversar?</h2>
+      <p>Busco minha primeira oportunidade na área para aprender, crescer e agregar valor ao time. Me chame pelo WhatsApp ou por e-mail.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://wa.me/5555999096533" target="_blank" rel="noopener">📱 (55) 99909-6533</a>
+        <a class="btn btn-ghost" href="mailto:thomassoarespessoa.rs@hotmail.com">✉️ Enviar e-mail</a>
+        <a class="btn btn-ghost" href="https://github.com/thomaspessoa" target="_blank" rel="noopener">💻 GitHub</a>
+      </div>
     </div>
-
-    <div class="skill-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">
-      <span>React Native</span>
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/react-native-typescript-app-consultas-medicas/certificate" target="_blank">App Mobile</a>
-      <a class="btn-skill" href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/react-native-context-api-aplicacoes/certificate" target="_blank">Context API</a>
-    </div>
-
   </div>
 </section>
 
 <footer>
-  © 2026 • Thomás Soares Pessôa • Front-End
+  © 2026 · Thomás Soares Pessôa · Desenvolvedor Front-End
 </footer>
 
 <script>
-const elements = document.querySelectorAll('.fade');
-window.addEventListener('scroll', () => {
-  elements.forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-      el.classList.add('show');
-    }
-  });
-});
+// Animação ao rolar
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Vídeos dos projetos: tocam só quando aparecem na tela
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduce) {
+  const vio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      const v = e.target;
+      if (e.isIntersecting) { v.play().catch(() => {}); } else { v.pause(); }
+    });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('video.demo').forEach(v => vio.observe(v));
+}
 </script>
 
 </body>
