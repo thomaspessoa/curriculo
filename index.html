@@ -307,7 +307,73 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .btn, .browser, .mini, .stack div { transition: none; }
+  *, *::before, *::after { animation: none !important; }
+  .hero-intro > *, .stagger > *, .photo-wrap { opacity: 1 !important; transform: none !important; }
+  .timeline::before, .progress div { transform: none !important; }
 }
+
+
+/* BARRA DE PROGRESSO */
+.progress-top { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 100;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2)); transform-origin: 0 50%; transform: scaleX(0); }
+
+/* MENU MOBILE */
+.menu-btn { display: none; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line);
+  background: rgba(255,255,255,.03); cursor: pointer; position: relative; }
+.menu-btn span { position: absolute; left: 11px; right: 11px; height: 2px; background: var(--text); border-radius: 2px; transition: transform .3s, opacity .3s, top .3s; }
+.menu-btn span:nth-child(1) { top: 14px; } .menu-btn span:nth-child(2) { top: 20px; } .menu-btn span:nth-child(3) { top: 26px; }
+.nav.open .menu-btn span:nth-child(1) { top: 20px; transform: rotate(45deg); }
+.nav.open .menu-btn span:nth-child(2) { opacity: 0; }
+.nav.open .menu-btn span:nth-child(3) { top: 20px; transform: rotate(-45deg); }
+.mobile-menu { display: none; }
+
+/* ENTRADA DO HERO */
+@keyframes up { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes pop { from { opacity: 0; transform: scale(.92) rotate(-2deg); } to { opacity: 1; transform: none; } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes glow { 0%,100% { opacity: .45; } 50% { opacity: .75; } }
+@keyframes shine { to { background-position: 200% center; } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.55); } 100% { box-shadow: 0 0 0 10px rgba(34,197,94,0); } }
+@keyframes wa { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+
+.hero-intro > * { opacity: 0; animation: up .8s cubic-bezier(.2,.7,.2,1) forwards; }
+.hero-intro > *:nth-child(1) { animation-delay: .05s; }
+.hero-intro > *:nth-child(2) { animation-delay: .15s; }
+.hero-intro > *:nth-child(3) { animation-delay: .28s; }
+.hero-intro > *:nth-child(4) { animation-delay: .4s; }
+.hero-intro > *:nth-child(5) { animation-delay: .52s; }
+.hero-intro > *:nth-child(6) { animation-delay: .64s; }
+.photo-wrap { animation: pop 1s .2s cubic-bezier(.2,.7,.2,1) both; }
+.photo-wrap img { animation: float 6s ease-in-out 1.2s infinite; }
+.photo-wrap::before { animation: glow 4s ease-in-out infinite; }
+.photo-card { animation: up .8s .9s both, float 6s ease-in-out 2s infinite; }
+.badge i { animation: pulse 1.8s infinite; }
+.grad { background-size: 200% auto; background-image: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent)); animation: shine 5s linear infinite; }
+
+/* ENTRADA EM CASCATA */
+.stagger > * { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.stagger.show > * { opacity: 1; transform: none; }
+.stagger.show > *:nth-child(2) { transition-delay: .07s; } .stagger.show > *:nth-child(3) { transition-delay: .14s; }
+.stagger.show > *:nth-child(4) { transition-delay: .21s; } .stagger.show > *:nth-child(5) { transition-delay: .28s; }
+.stagger.show > *:nth-child(6) { transition-delay: .35s; } .stagger.show > *:nth-child(7) { transition-delay: .42s; }
+.stagger.show > *:nth-child(8) { transition-delay: .49s; } .stagger.show > *:nth-child(9) { transition-delay: .56s; }
+.stagger.show > *:nth-child(10) { transition-delay: .63s; } .stagger.show > *:nth-child(11) { transition-delay: .7s; }
+.stagger.show > *:nth-child(12) { transition-delay: .77s; }
+
+.project .browser { transform: perspective(1200px) rotateY(0); }
+.project.reveal { transform: translateY(40px) scale(.98); }
+.project.reveal.show { transform: none; }
+.timeline::before { transform-origin: top; transform: scaleY(0); transition: transform 1.2s ease; }
+.timeline.show::before { transform: scaleY(1); }
+.progress div { transform-origin: left; transform: scaleX(0); transition: transform 1.4s cubic-bezier(.2,.7,.2,1) .3s; }
+.edu-card.show .progress div { transform: scaleX(1); }
+
+/* BOTÃO WHATSAPP FLUTUANTE */
+.wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 56px; height: 56px; border-radius: 50%;
+  background: #25d366; display: grid; place-items: center; box-shadow: 0 12px 30px -8px rgba(37,211,102,.6);
+  opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .4s, transform .4s; }
+.wa-float.on { opacity: 1; transform: none; pointer-events: auto; animation: wa 2.4s ease-in-out 1s infinite; }
+.wa-float svg { width: 28px; height: 28px; fill: #fff; }
 
 /* RESPONSIVO */
 @media (max-width: 960px) {
@@ -321,17 +387,47 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
   .project { gap: 28px; margin-bottom: 72px; }
 }
 @media (max-width: 720px) {
-  .nav-links { display: none; }
+  .nav-links, .nav .wrap > .btn { display: none; }
+  .menu-btn { display: block; }
+  .mobile-menu { display: block; position: fixed; top: 66px; left: 0; right: 0; z-index: 49;
+    background: rgba(7,11,23,.97); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line);
+    padding: 8px 24px 24px; transform: translateY(-12px); opacity: 0; pointer-events: none; transition: .3s; }
+  .nav.open + .mobile-menu { transform: none; opacity: 1; pointer-events: auto; }
+  .mobile-menu a { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); text-decoration: none; font-weight: 600; font-size: 1.05rem; }
+  .mobile-menu a.btn { display: flex; margin-top: 18px; border: 0; justify-content: center; padding: 14px; }
+  .wrap { padding: 0 20px; }
+  .hero { padding-top: 36px; padding-bottom: 48px; }
+  .hero h1 { font-size: 2.3rem; }
+  .hero-cta .btn { flex: 1 1 100%; justify-content: center; padding: 15px 22px; }
+  .hero-meta { flex-direction: column; gap: 8px; }
+  .photo-wrap img { width: 210px; height: 250px; }
+  .photo-card { left: -28px; bottom: 16px; padding: 10px 14px; }
+  .photo-card strong { font-size: 1.1rem; }
+  .stats { gap: 12px; }
+  .stat { padding: 16px; }
+  .stat strong { font-size: 1.45rem; }
+  .project h3 { font-size: 1.5rem; }
+  .project-links .btn, .mini .project-links .btn { flex: 1; justify-content: center; padding: 12px; }
+  .browser-bar span { max-width: 200px; }
+  .t-item { padding: 18px 20px; }
+  .cta { padding: 44px 20px; border-radius: 22px; }
+  footer { padding-bottom: 90px; }
+  .cta .hero-cta { flex-direction: column; }
+  .cta .hero-cta .btn { width: 100%; }
+  .section-sub { margin-bottom: 32px; }
   section { padding: 72px 0; }
   .hero { padding-top: 48px; }
   .mini-grid, .traits { grid-template-columns: 1fr; }
   .certs { grid-template-columns: 1fr; }
-  .stats { margin-top: 44px; }
+  .stats { margin-top: 40px; }
 }
+@media (min-width: 721px) { .wa-float { display: none; } }
 </style>
 </head>
 
 <body>
+
+<div class="progress-top" id="progress"></div>
 
 <nav class="nav">
   <div class="wrap">
@@ -344,13 +440,21 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
       <li><a href="#contato">Contato</a></li>
     </ul>
     <a class="btn btn-primary btn-sm" href="#contato">Fale comigo</a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<div class="mobile-menu">
+  <a href="#projetos">Projetos</a>
+  <a href="#experiencia">Experiência</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#habilidades">Habilidades</a>
+  <a class="btn btn-primary" href="#contato">Fale comigo</a>
+</div>
 
 <!-- HERO -->
 <header class="hero" id="inicio">
   <div class="wrap">
-    <div class="reveal">
+    <div class="hero-intro">
       <div class="badge"><i></i> Disponível para minha primeira oportunidade</div>
       <h1>Thomás Soares <span class="grad">Pessôa</span></h1>
       <p class="role">Desenvolvedor Front-End · React, TypeScript e Supabase</p>
@@ -369,7 +473,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
       </div>
     </div>
 
-    <div class="photo-wrap reveal">
+    <div class="photo-wrap">
       <img src="minha-foto.jpg" alt="Foto de Thomás Soares Pessôa">
       <div class="photo-card">
         <strong>5 projetos</strong>
@@ -379,11 +483,11 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
   </div>
 
   <div class="wrap stats-wrap">
-    <div class="stats reveal">
-      <div class="stat"><strong>8º</strong><span>semestre de Sistemas de Informação</span></div>
-      <div class="stat"><strong>5</strong><span>sites publicados na Vercel</span></div>
-      <div class="stat"><strong>10</strong><span>certificados Alura</span></div>
-      <div class="stat"><strong>2023</strong><span>programando como freelancer</span></div>
+    <div class="stats stagger">
+      <div class="stat"><strong data-count="8" data-suffix="º">8º</strong><span>semestre de Sistemas de Informação</span></div>
+      <div class="stat"><strong data-count="5">5</strong><span>sites publicados na Vercel</span></div>
+      <div class="stat"><strong data-count="10">10</strong><span>certificados Alura</span></div>
+      <div class="stat"><strong data-count="2023" data-from="2000">2023</strong><span>programando como freelancer</span></div>
     </div>
   </div>
 </header>
@@ -412,7 +516,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
           <li>Gravação personalizada com prévia, mapa das lojas e agendamento de visita</li>
           <li>Painel com login por cargo, cadastro de produtos com foto e gráficos de acesso</li>
         </ul>
-        <div class="tags"><span>React 19</span><span>TypeScript</span><span>Three.js</span><span>Framer Motion</span><span>Leaflet</span><span>Supabase</span></div>
+        <div class="tags stagger"><span>React 19</span><span>TypeScript</span><span>Three.js</span><span>Framer Motion</span><span>Leaflet</span><span>Supabase</span></div>
         <div class="project-links">
           <a class="btn btn-primary btn-sm" href="https://casa-das-aliancas-zeta.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a>
         </div>
@@ -436,7 +540,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
           <li>Notificações no celular (Web Push) e instalação como app (PWA)</li>
           <li>Relatórios com gráficos exportados em PDF e Excel para a administração</li>
         </ul>
-        <div class="tags"><span>React</span><span>TypeScript</span><span>Zustand</span><span>Leaflet</span><span>Supabase</span><span>PWA</span></div>
+        <div class="tags stagger"><span>React</span><span>TypeScript</span><span>Zustand</span><span>Leaflet</span><span>Supabase</span><span>PWA</span></div>
         <div class="project-links">
           <a class="btn btn-primary btn-sm" href="https://alerta-comunidade.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a>
         </div>
@@ -460,7 +564,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
           <li>Mural de pedidos de indicação, estante pessoal e perfil de leitor</li>
           <li>Cadastro e login com recuperação de senha, coberto por 19 testes automáticos</li>
         </ul>
-        <div class="tags"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Vitest</span><span>Testing Library</span></div>
+        <div class="tags stagger"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Vitest</span><span>Testing Library</span></div>
         <div class="project-links">
           <a class="btn btn-primary btn-sm" href="https://entrelinhas-ashen-chi.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a>
         </div>
@@ -468,8 +572,8 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
     </article>
 
     <h3 class="more-title reveal">Outros projetos</h3>
-    <div class="mini-grid">
-      <article class="mini reveal">
+    <div class="mini-grid stagger">
+      <article class="mini">
         <div class="browser">
           <div class="browser-bar"><i></i><i></i><i></i><span>ecocash-chi.vercel.app</span></div>
           <video class="demo" muted loop playsinline preload="none" poster="assets/projetos/ecocash.webp" aria-label="Demonstração do EcoCash">
@@ -480,12 +584,12 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
           <span class="project-tag">Sustentabilidade</span>
           <h3>EcoCash</h3>
           <p>Plataforma municipal de recompensas por reciclagem: o morador entrega lixo orgânico, ganha pontos e troca por desconto no comércio local. Tem app do morador, painel da prefeitura e página pública de impacto.</p>
-          <div class="tags"><span>React 19</span><span>TypeScript</span><span>Motion</span><span>Recharts</span></div>
+          <div class="tags stagger"><span>React 19</span><span>TypeScript</span><span>Motion</span><span>Recharts</span></div>
           <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://ecocash-chi.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a></div>
         </div>
       </article>
 
-      <article class="mini reveal">
+      <article class="mini">
         <div class="browser">
           <div class="browser-bar"><i></i><i></i><i></i><span>quanto-custa-zeta.vercel.app</span></div>
           <video class="demo" muted loop playsinline preload="none" poster="assets/projetos/quantocusta.webp" aria-label="Demonstração do Quanto Custa?">
@@ -496,7 +600,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
           <span class="project-tag">Finanças pessoais</span>
           <h3>Quanto Custa?</h3>
           <p>Calculadoras simples para descobrir o custo real de morar sozinho, ter carro, moto ou cachorro, e quanto sobra da renda no fim do mês.</p>
-          <div class="tags"><span>React</span><span>Vite</span><span>JavaScript</span></div>
+          <div class="tags stagger"><span>React</span><span>Vite</span><span>JavaScript</span></div>
           <div class="project-links">
             <a class="btn btn-ghost btn-sm" href="https://quanto-custa-zeta.vercel.app/" target="_blank" rel="noopener">Ver site ↗</a>
             <a class="btn btn-ghost btn-sm" href="https://github.com/thomaspessoa/quanto-custa" target="_blank" rel="noopener">Código</a>
@@ -515,7 +619,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
     <p class="section-sub reveal">Experiência prática com tecnologia e com gente, do atendimento ao código.</p>
 
     <div class="two-col">
-      <div class="timeline">
+      <div class="timeline reveal-line">
         <div class="t-item reveal">
           <div class="t-head"><h4>Programador Front-End</h4><span class="when">2023</span></div>
           <div class="org">Freelancer</div>
@@ -559,7 +663,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
         Meu objetivo é me tornar um profissional cada vez mais qualificado e contribuir de forma positiva com os resultados da equipe e da empresa.
       </p>
     </div>
-    <div class="traits reveal">
+    <div class="traits stagger">
       <div class="trait"><strong>🤝 Trabalho em equipe</strong><span>Comunicativo e colaborativo</span></div>
       <div class="trait"><strong>🗂️ Organizado</strong><span>Dedicado, responsável e pontual</span></div>
       <div class="trait"><strong>⚡ Aprende rápido</strong><span>Facilidade com novas ferramentas</span></div>
@@ -575,7 +679,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
     <h2 class="section-title reveal">Tecnologias que uso</h2>
     <p class="section-sub reveal">As ferramentas dos projetos acima, mais os cursos certificados.</p>
 
-    <div class="stack reveal">
+    <div class="stack stagger">
       <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">React</div>
       <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">TypeScript</div>
       <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">JavaScript</div>
@@ -590,7 +694,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
       <div><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">Python</div>
     </div>
 
-    <div class="certs reveal">
+    <div class="certs stagger">
       <div class="cert">
         <div class="cert-head"><img onerror="this.remove()" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt=""><strong>HTML & CSS</strong></div>
         <a href="https://cursos.alura.com.br/user/thomassoarespessoa-rs/course/html-css-ambiente-arquivos-tags/certificate" target="_blank" rel="noopener">Estrutura e tags</a>
@@ -634,19 +738,61 @@ footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size:
   </div>
 </section>
 
+<a class="wa-float" href="https://wa.me/5555999096533" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.03c-.25.69-1.45 1.33-2 1.37-.51.05-1 .24-3.36-.7-2.84-1.12-4.65-4.04-4.79-4.23-.14-.19-1.14-1.52-1.14-2.9s.72-2.06.98-2.34c.25-.28.55-.35.74-.35l.53.01c.17 0 .4-.06.62.48.25.6.84 2.07.92 2.22.07.15.12.32.02.51-.1.19-.15.32-.29.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.2.73-.85.92-1.14.19-.29.39-.24.65-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.69-.18 1.38Z"/></svg>
+</a>
+
 <footer>
   © 2026 · Thomás Soares Pessôa · Desenvolvedor Front-End
 </footer>
 
 <script>
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Números contando
+function countUp(el) {
+  const end = +el.dataset.count, start = +(el.dataset.from || 0), suf = el.dataset.suffix || '';
+  if (reduce) { el.textContent = end + suf; return; }
+  const t0 = performance.now(), dur = 1400;
+  const step = (t) => {
+    const p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(start + (end - start) * e) + suf;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
 // Animação ao rolar
 const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('show');
+    e.target.querySelectorAll('[data-count]').forEach(countUp);
+    io.unobserve(e.target);
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .stagger, .reveal-line, .edu-card').forEach(el => io.observe(el));
+
+// Menu do celular
+const nav = document.querySelector('.nav'), menuBtn = document.querySelector('.menu-btn');
+menuBtn.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open);
+});
+document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false);
+}));
+
+// Barra de progresso + botão do WhatsApp
+const bar = document.getElementById('progress'), wa = document.querySelector('.wa-float');
+const onScroll = () => {
+  const h = document.documentElement.scrollHeight - innerHeight;
+  bar.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`;
+  wa.classList.toggle('on', scrollY > 500);
+};
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
 // Vídeos dos projetos: tocam só quando aparecem na tela
-const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!reduce) {
   const vio = new IntersectionObserver((entries) => {
     entries.forEach(e => {
